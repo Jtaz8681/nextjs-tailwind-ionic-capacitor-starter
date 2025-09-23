@@ -28,11 +28,17 @@ export const setDone = (
 ) => {
   Store.update((s, o) => {
     const listIndex = o.lists.findIndex(l => l === list);
+    if (listIndex === -1) return;
+
     const items = o.lists[listIndex].items;
     const itemIndex = items?.findIndex(i => i === listItem);
-    const item = items?.[itemIndex ?? -1];
-    if (!item) return;
-    item.done = done;
+    if (itemIndex === undefined || itemIndex < 0) return;
+
+    const draftItem = s.lists[listIndex].items?.[itemIndex];
+    if (!draftItem) return;
+
+    draftItem.done = done;
+
     if (list === o.selectedList) {
       s.selectedList = s.lists[listIndex];
     }
