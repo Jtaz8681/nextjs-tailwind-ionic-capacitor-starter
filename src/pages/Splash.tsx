@@ -15,9 +15,9 @@ const Splash = ({ onSplashComplete }: { onSplashComplete: () => void }) => {
 
   return (
     <IonPage>
-      <IonContent className="ion-padding" style={{ backgroundColor: '#000000' }}>
-        <div className="flex items-center justify-center h-full">
-          <div className="relative w-64 h-64">
+      <IonContent className="ion-padding" style={{ backgroundColor: '#000000', height: '100vh' }}>
+        <div className="flex items-center justify-center" style={{ height: '100%' }}>
+          <div style={{ width: '256px', height: '256px', position: 'relative' }}>
             <Image
               src="/img/Aldora Divers Square white logo 2022.png"
               alt="Aldora Divers Logo"
