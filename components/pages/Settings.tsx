@@ -25,13 +25,23 @@ const Settings = () => {
   const [showLogoutAlert, setShowLogoutAlert] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // Check system preference on mount
+  // Check system preference and saved preference on mount
   useEffect(() => {
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-    setIsDarkMode(prefersDark.matches);
+    const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+    
+    const shouldBeDark = savedDarkMode || prefersDark.matches;
+    setIsDarkMode(shouldBeDark);
+    document.documentElement.classList.toggle('ion-palette-dark', shouldBeDark);
+    document.body.classList.toggle('dark', shouldBeDark);
 
     const handleChange = (e: MediaQueryListEvent) => {
-      setIsDarkMode(e.matches);
+      if (localStorage.getItem('darkMode') === null) {
+        const shouldBeDark = e.matches;
+        setIsDarkMode(shouldBeDark);
+        document.documentElement.classList.toggle('ion-palette-dark', shouldBeDark);
+        document.body.classList.toggle('dark', shouldBeDark);
+      }
     };
 
     prefersDark.addEventListener('change', handleChange);
@@ -40,6 +50,8 @@ const Settings = () => {
 
   const handleDarkModeToggle = (enabled: boolean) => {
     setIsDarkMode(enabled);
+    localStorage.setItem('darkMode', enabled.toString());
+    document.documentElement.classList.toggle('ion-palette-dark', enabled);
     document.body.classList.toggle('dark', enabled);
   };
 
