@@ -12,8 +12,8 @@ import {
   IonAlert,
 } from '@ionic/react';
 import { useState } from 'react';
-import { useAuth } from '@/contexts/SessionContext';
-import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '../../src/contexts/SessionContext';
+import { supabase } from '../../src/integrations/supabase/client';
 
 import Store from '../../store';
 import * as selectors from '../../store/selectors';

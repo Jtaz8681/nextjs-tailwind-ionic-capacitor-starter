@@ -4,9 +4,9 @@ import { StatusBar, Style } from '@capacitor/status-bar';
 import { IonReactRouter } from '@ionic/react-router';
 import { Route, Redirect } from 'react-router-dom';
 
-import { SessionContextProvider, useAuth } from '@/contexts/SessionContext';
+import { SessionContextProvider, useAuth } from '../src/contexts/SessionContext';
 import Tabs from './pages/Tabs';
-import Login from '@/pages/Login';
+import Login from '../src/pages/Login';
 
 setupIonicReact({});
 
