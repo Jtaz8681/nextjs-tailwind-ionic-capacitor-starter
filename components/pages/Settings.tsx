@@ -32,15 +32,28 @@ const Settings = () => {
     
     const shouldBeDark = savedDarkMode || prefersDark.matches;
     setIsDarkMode(shouldBeDark);
-    document.documentElement.classList.toggle('ion-palette-dark', shouldBeDark);
-    document.body.classList.toggle('dark', shouldBeDark);
+    
+    // Apply dark mode to document
+    if (shouldBeDark) {
+      document.documentElement.classList.add('ion-palette-dark');
+      document.body.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('ion-palette-dark');
+      document.body.classList.remove('dark');
+    }
 
     const handleChange = (e: MediaQueryListEvent) => {
       if (localStorage.getItem('darkMode') === null) {
         const shouldBeDark = e.matches;
         setIsDarkMode(shouldBeDark);
-        document.documentElement.classList.toggle('ion-palette-dark', shouldBeDark);
-        document.body.classList.toggle('dark', shouldBeDark);
+        
+        if (shouldBeDark) {
+          document.documentElement.classList.add('ion-palette-dark');
+          document.body.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('ion-palette-dark');
+          document.body.classList.remove('dark');
+        }
       }
     };
 
@@ -51,8 +64,15 @@ const Settings = () => {
   const handleDarkModeToggle = (enabled: boolean) => {
     setIsDarkMode(enabled);
     localStorage.setItem('darkMode', enabled.toString());
-    document.documentElement.classList.toggle('ion-palette-dark', enabled);
-    document.body.classList.toggle('dark', enabled);
+    
+    // Apply dark mode to document
+    if (enabled) {
+      document.documentElement.classList.add('ion-palette-dark');
+      document.body.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('ion-palette-dark');
+      document.body.classList.remove('dark');
+    }
   };
 
   const handleLogout = async () => {

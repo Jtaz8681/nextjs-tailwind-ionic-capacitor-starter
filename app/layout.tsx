@@ -39,6 +39,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            (function() {
+              const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+              const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+              const shouldBeDark = savedDarkMode || prefersDark.matches;
+              
+              if (shouldBeDark) {
+                document.documentElement.classList.add('ion-palette-dark');
+                document.body.classList.add('dark');
+              }
+            })();
+          `
+        }} />
+      </head>
       <body>{children}</body>
       <Script
         type="module"
