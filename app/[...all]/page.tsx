@@ -7,11 +7,11 @@ const App = dynamic(() => import('../../components/AppShell'), {
 
 export async function generateStaticParams() {
   return [
-    { all: ['feed'] },
+    { all: ['dashboard'] },
     { all: ['lists'] },
     ...lists.map(list => ({ all: ['lists', list.id] })),
     { all: ['settings'] },
-    { all: ['login'] }, // Add login route
+    { all: ['login'] },
   ];
 }
 

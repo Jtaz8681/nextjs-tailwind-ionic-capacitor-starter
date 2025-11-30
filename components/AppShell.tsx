@@ -37,7 +37,7 @@ const AppContent = () => {
           exact={true} 
         />
         <Route 
-          path="/feed" 
+          path="/dashboard" 
           render={() => user ? <Tabs /> : <Redirect to="/login" />} 
           exact={true} 
         />
