@@ -21,16 +21,7 @@ const Login = () => {
           <IonTitle>Login</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent 
-        className="ion-padding" 
-        style={{
-          backgroundImage: 'url(/img/appbg.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          minHeight: '100vh'
-        }}
-      >
+      <IonContent className="ion-padding">
         <div className="flex flex-col items-center justify-center min-h-full">
           <IonCard className="w-full max-w-md">
             <IonCardContent>
