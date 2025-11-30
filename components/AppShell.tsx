@@ -2,9 +2,11 @@
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { IonReactRouter } from '@ionic/react-router';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
+import { SessionContextProvider, useAuth } from '@/contexts/SessionContext';
 import Tabs from './pages/Tabs';
+import Login from '@/pages/Login';
 
 setupIonicReact({});
 
@@ -18,14 +20,53 @@ window
     } catch {}
   });
 
+const AppContent = () => {
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <IonReactRouter>
+      <IonRouterOutlet id="main">
+        <Route path="/login" render={() => <Login />} exact={true} />
+        <Route 
+          path="/" 
+          render={() => user ? <Tabs /> : <Redirect to="/login" />} 
+          exact={true} 
+        />
+        <Route 
+          path="/feed" 
+          render={() => user ? <Tabs /> : <Redirect to="/login" />} 
+          exact={true} 
+        />
+        <Route 
+          path="/lists" 
+          render={() => user ? <Tabs /> : <Redirect to="/login" />} 
+          exact={true} 
+        />
+        <Route 
+          path="/lists/:listId" 
+          render={() => user ? <Tabs /> : <Redirect to="/login" />} 
+          exact={true} 
+        />
+        <Route 
+          path="/settings" 
+          render={() => user ? <Tabs /> : <Redirect to="/login" />} 
+          exact={true} 
+        />
+      </IonRouterOutlet>
+    </IonReactRouter>
+  );
+};
+
 const AppShell = () => {
   return (
     <IonApp>
-      <IonReactRouter>
-        <IonRouterOutlet id="main">
-          <Route path="/" render={() => <Tabs />} />
-        </IonRouterOutlet>
-      </IonReactRouter>
+      <SessionContextProvider>
+        <AppContent />
+      </SessionContextProvider>
     </IonApp>
   );
 };
