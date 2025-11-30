@@ -35,7 +35,7 @@ const Dashboard = () => {
       color: 'primary',
     },
     {
-      title: 'Today's Dives',
+      title: "Today's Dives",
       value: '2',
       icon: water,
       color: 'secondary',
