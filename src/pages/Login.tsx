@@ -36,7 +36,7 @@ const Login = () => {
         
         {/* Login Form Container */}
         <div className="flex flex-col items-center justify-center min-h-full" style={{ padding: '16px' }}>
-          <IonCard className="w-full max-w-md" style={{ backgroundColor: 'rgba(255, 255, 255, 0.95)' }}>
+          <IonCard className="w-full max-w-md">
             <IonCardContent>
               <div className="mb-6 text-center">
                 <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">
