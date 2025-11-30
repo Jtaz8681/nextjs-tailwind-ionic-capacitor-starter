@@ -12,6 +12,7 @@ import {
   IonCard,
   IonCardContent,
 } from '@ionic/react';
+import Image from 'next/image';
 
 const Login = () => {
   return (
@@ -23,6 +24,19 @@ const Login = () => {
       </IonHeader>
       <IonContent className="ion-padding">
         <div className="flex flex-col items-center justify-center min-h-full">
+          {/* Logo above login card */}
+          <div className="mb-6" style={{ width: '100%', maxWidth: '400px' }}>
+            <div style={{ width: '100%', height: 'auto', aspectRatio: '1', position: 'relative' }}>
+              <Image
+                src="/img/Aldora Divers Square white logo 2022.png"
+                alt="Aldora Divers Logo"
+                fill
+                style={{ objectFit: 'contain' }}
+                priority
+              />
+            </div>
+          </div>
+          
           <IonCard className="w-full max-w-md">
             <IonCardContent>
               <div className="mb-6 text-center">
