@@ -24,22 +24,21 @@ const Login = () => {
       <IonContent 
         className="ion-padding" 
         style={{
-          backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/img/appbg.png")',
+          backgroundImage: 'url("/img/appbg.png")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          minHeight: '100vh',
-          position: 'relative'
+          height: '100vh'
         }}
       >
-        <div className="flex flex-col items-center justify-center" style={{ minHeight: 'calc(100vh - 120px)' }}>
-          <IonCard className="w-full max-w-md" style={{ backgroundColor: 'rgba(255, 255, 255, 0.95)' }}>
+        <div className="flex flex-col items-center justify-center min-h-full">
+          <IonCard className="w-full max-w-md">
             <IonCardContent>
               <div className="mb-6 text-center">
-                <h1 className="text-2xl font-bold text-gray-800 mb-2">
+                <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">
                   Boat Management
                 </h1>
-                <p className="text-gray-600">
+                <p className="text-gray-600 dark:text-gray-400">
                   Sign in to manage your fleet
                 </p>
               </div>
