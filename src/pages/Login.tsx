@@ -23,7 +23,7 @@ const Login = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
-        <div className="flex flex-col items-center justify-center min-h-full">
+        <div className="flex flex-col items-center">
           {/* Logo above login card */}
           <div className="mb-6" style={{ width: '100%', maxWidth: '400px' }}>
             <div style={{ width: '100%', height: 'auto', aspectRatio: '1', position: 'relative' }}>
