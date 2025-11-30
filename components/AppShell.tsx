@@ -3,10 +3,12 @@ import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { IonReactRouter } from '@ionic/react-router';
 import { Route, Redirect } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 import { SessionContextProvider, useAuth } from '../src/contexts/SessionContext';
 import Tabs from './pages/Tabs';
 import Login from '../src/pages/Login';
+import Splash from '../src/pages/Splash';
 
 setupIonicReact({});
 
@@ -22,9 +24,18 @@ window
 
 const AppContent = () => {
   const { user, loading } = useAuth();
+  const [showSplash, setShowSplash] = useState(true);
+
+  const handleSplashComplete = () => {
+    setShowSplash(false);
+  };
 
   if (loading) {
     return <div>Loading...</div>;
+  }
+
+  if (showSplash) {
+    return <Splash onSplashComplete={handleSplashComplete} />;
   }
 
   return (
