@@ -23,10 +23,10 @@ const Login = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
-        <div className="flex flex-col items-center justify-center min-h-full space-y-6">
-          {/* Logo container */}
-          <div className="flex justify-center w-full">
-            <div style={{ width: '256px', height: '256px', position: 'relative' }}>
+        <div className="flex flex-col items-center justify-center min-h-full">
+          {/* Logo above login card */}
+          <div className="mb-6" style={{ width: '100%', maxWidth: '400px' }}>
+            <div style={{ width: '100%', height: 'auto', aspectRatio: '1', position: 'relative' }}>
               <Image
                 src="/img/Aldora Divers Square white logo 2022.png"
                 alt="Aldora Divers Logo"
@@ -37,39 +37,36 @@ const Login = () => {
             </div>
           </div>
           
-          {/* Login card container */}
-          <div className="flex justify-center w-full">
-            <IonCard className="w-full max-w-md">
-              <IonCardContent>
-                <div className="mb-6 text-center">
-                  <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">
-                    Boat Management
-                  </h1>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    Sign in to manage your fleet
-                  </p>
-                </div>
-                
-                <Auth
-                  supabaseClient={supabase}
-                  providers={[]}
-                  appearance={{
-                    theme: ThemeSupa,
-                    variables: {
-                      default: {
-                        colors: {
-                          brand: '#3880ff',
-                          brandAccent: '#3171e0',
-                        }
+          <IonCard className="w-full max-w-md">
+            <IonCardContent>
+              <div className="mb-6 text-center">
+                <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">
+                  Boat Management
+                </h1>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Sign in to manage your fleet
+                </p>
+              </div>
+              
+              <Auth
+                supabaseClient={supabase}
+                providers={[]}
+                appearance={{
+                  theme: ThemeSupa,
+                  variables: {
+                    default: {
+                      colors: {
+                        brand: '#3880ff',
+                        brandAccent: '#3171e0',
                       }
                     }
-                  }}
-                  theme="light"
-                  redirectTo="/feed"
-                />
-              </IonCardContent>
-            </IonCard>
-          </div>
+                  }
+                }}
+                theme="light"
+                redirectTo="/feed"
+              />
+            </IonCardContent>
+          </IonCard>
         </div>
       </IonContent>
     </IonPage>
