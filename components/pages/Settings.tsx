@@ -11,7 +11,7 @@ import {
   IonLabel,
   IonAlert,
 } from '@ionic/react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../../src/contexts/SessionContext';
 import { supabase } from '../../src/integrations/supabase/client';
 
@@ -23,6 +23,25 @@ const Settings = () => {
   const settings = Store.useState(selectors.selectSettings);
   const { user } = useAuth();
   const [showLogoutAlert, setShowLogoutAlert] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // Check system preference on mount
+  useEffect(() => {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    setIsDarkMode(prefersDark.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setIsDarkMode(e.matches);
+    };
+
+    prefersDark.addEventListener('change', handleChange);
+    return () => prefersDark.removeEventListener('change', handleChange);
+  }, []);
+
+  const handleDarkModeToggle = (enabled: boolean) => {
+    setIsDarkMode(enabled);
+    document.body.classList.toggle('dark', enabled);
+  };
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -48,6 +67,15 @@ const Settings = () => {
               }}
             >
               Enable Notifications
+            </IonToggle>
+          </IonItem>
+          
+          <IonItem>
+            <IonToggle
+              checked={isDarkMode}
+              onIonChange={e => handleDarkModeToggle(e.target.checked)}
+            >
+              Dark Mode
             </IonToggle>
           </IonItem>
           
